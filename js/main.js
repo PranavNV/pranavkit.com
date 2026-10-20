@@ -374,7 +374,13 @@ function renderCV() {
 document.addEventListener("DOMContentLoaded", () => {
   chrome();
   const page = document.body.dataset.page;
+  // A failing section must not leave the rest of the page hidden, so motion()
+  // (which reveals content) always runs.
+  try { boot(page); } catch (e) { console.error(e); }
+  motion();
+});
 
+function boot(page) {
   $$("[data-space]").forEach((s) => new ResearchSpace(s, { zoomable: s.dataset.space === "full" }));
 
   if (page === "home") {
@@ -395,6 +401,4 @@ document.addEventListener("DOMContentLoaded", () => {
   if (page === "press") { renderPress($("#press-grid")); renderWriting($("#writing")); renderAwards($("#awards")); }
   if (page === "research") { renderDomains($("#domain-cards")); renderCollab($("#collab")); renderPublications($("#pubs")); }
   if (page === "cv") { renderCV(); renderTalks($("#cv-talks")); renderCollab($("#collab")); }
-
-  motion();
-});
+}
