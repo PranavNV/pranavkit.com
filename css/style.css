@@ -479,6 +479,24 @@ section { position: relative; z-index: 1; }
 .space-panel p { font-size: 0.9rem; color: var(--muted); margin: 0 0 14px; }
 .space-panel a.more { font-size: 0.85rem; color: var(--paper); }
 
+.space-key {
+  position: absolute;
+  left: 22px;
+  bottom: 18px;
+  z-index: 2;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line-2);
+  background: rgba(var(--bg-rgb), 0.6);
+  backdrop-filter: blur(8px);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.space-key summary { cursor: pointer; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper); }
+.space-key ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 5px; }
+.space-key li { display: flex; align-items: center; gap: 9px; }
+.space-key svg { width: 22px; height: 22px; flex: none; }
+
 .space-fallback { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 /* ---------- Domain cards (research page) ---------- */
@@ -842,7 +860,9 @@ footer a:hover { color: var(--paper); }
   .space-canvas { height: 520px; }
   .space-legend { flex-direction: row; flex-wrap: wrap; right: 22px; }
   .space-legend .chip .n { display: none; }
-  .space-hint { left: 16px; right: 150px; bottom: 18px; flex-wrap: wrap; gap: 2px 10px; font-size: 0.64rem; }
+  .space-hint { display: none; }
+  .space-key { left: 16px; bottom: 16px; padding: 9px 12px; max-width: calc(100% - 170px); }
+  .space-key[open] { max-width: none; right: 16px; bottom: 64px; }
   .space-shell.full { height: min(72vh, 600px); }
   .portrait { inset: 15%; }
   .orbit-tag { font-size: 0.7rem; padding: 5px 10px; }

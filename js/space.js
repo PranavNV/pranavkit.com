@@ -93,6 +93,21 @@ class ResearchSpace {
       s.appendChild(this.panel);
     }
 
+    // Star key: what color, size, ring, core, and cross mean. Collapsed on phones.
+    const glyph = (body) => `<svg viewBox="0 0 24 24" aria-hidden="true">${body}</svg>`;
+    const key = el("details", "space-key");
+    key.innerHTML = `<summary class="mono">Star key</summary>
+      <ul>
+        ${this.touch ? `<li class="mono">Tap a star to preview, tap again to open</li>` : ""}
+        <li>${glyph('<circle cx="5" cy="12" r="3" fill="var(--magenta)"/><circle cx="12" cy="12" r="3" fill="var(--cyan)"/><circle cx="19" cy="12" r="3" fill="var(--lime)"/>')}Color = main domain</li>
+        <li>${glyph('<circle cx="6" cy="12" r="2.6" fill="var(--indigo)"/><circle cx="17" cy="12" r="5.5" fill="var(--indigo)"/>')}Bigger = first author or award</li>
+        <li>${glyph('<circle cx="12" cy="12" r="5" fill="var(--cyan)"/><circle cx="12" cy="12" r="8.5" fill="none" stroke="var(--orchid)" stroke-width="1.6"/>')}Ring = second domain</li>
+        <li>${glyph('<circle cx="12" cy="12" r="6" fill="var(--teal)"/><circle cx="12" cy="12" r="2.2" fill="#fff"/>')}White core = first author</li>
+        <li>${glyph('<path d="M12 1.5v21M1.5 12h21" stroke="var(--star)" stroke-width="1.6"/><circle cx="12" cy="12" r="5" fill="var(--magenta)"/>')}Cross = award-winning paper</li>
+      </ul>`;
+    key.open = !matchMedia("(max-width: 760px)").matches;
+    s.appendChild(key);
+
     const hint = el("div", "space-hint mono");
     hint.innerHTML = this.touch
       ? "<span>Swipe to rotate</span><span>Tap a star</span><span>Tap again to open</span>"
