@@ -221,6 +221,19 @@ const SERVICE = [
   { y: "2020", t: "Vice President", o: "Graduate Student Association in IST (GIST)" },
 ];
 
+/* Collaborators and mentors, shown on the Research and CV pages. u is optional. */
+const COLLABORATORS = [
+  { n: "Shomir Wilson", o: "Penn State", u: "https://shomir.net/" },
+  { n: "Jason Wu", o: "Salesforce", u: "https://jasonwu0731.github.io/" },
+  { n: "Philippe Laban", o: "Salesforce", u: "https://tingofurro.github.io/" },
+  { n: "Avijit Ghosh", o: "Hugging Face", u: "https://evijit.github.io/" },
+  { n: "Sourojit Ghosh", o: "UNC", u: "https://sourojitghosh.github.io/" },
+  { n: "Sanjana Gautam", o: "Microsoft" },
+  { n: "Aylin Caliskan", o: "UW", u: "https://faculty.washington.edu/aylin/" },
+  { n: "Christopher Graziul", o: "UChicago", u: "https://datascience.uchicago.edu/people/christopher-graziul/" },
+  { n: "Koustava Goswami", o: "Adobe", u: "https://research.adobe.com/person/koustava-goswami/" },
+];
+
 /* Blogs and essays. src = where it was published. */
 const BLOGS = [
   { d: "Oct 2025", src: "Salesforce Blog", t: "Towards Trustworthy Enterprise Deep Research", u: "https://www.salesforce.com/blog/trusted-deepresearch/", note: "Co-written with the Salesforce AI Research team: what it takes for deep research agents to be trusted inside an enterprise, from controlled information flow to faithful, well-cited reports." },

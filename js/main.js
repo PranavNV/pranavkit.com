@@ -334,6 +334,13 @@ function renderTalks(root) {
   root.innerHTML = TALKS.map((t) => `<div class="svc"><span class="y">${t.d}</span><div><b>${t.u ? `<a href="${t.u}" target="_blank" rel="noopener">${t.t}</a>` : t.t}</b><span>${t.o}</span></div></div>`).join("");
 }
 
+/* ---------- Collaborators ---------- */
+function renderCollab(root) {
+  root.innerHTML = COLLABORATORS.map((c) => c.u
+    ? `<a href="${c.u}" target="_blank" rel="noopener">${c.n} · ${c.o}</a>`
+    : `<span>${c.n} · ${c.o}</span>`).join("");
+}
+
 /* ---------- Reach out (home) ---------- */
 function renderReach(root) {
   const btns = [
@@ -379,7 +386,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ["stress-test agents before users do.", "var(--magenta)"],
       ["keep humans at the center of AI.", "var(--lime)"],
     ]);
-    renderNews($("#news-list"), { limit: 8, filters: $("#news-filters") });
     renderFeatured($("#featured"), ["DeepTRACE", "Training Reasoning Models to Generate Diverse", "Belief Cascades", "A Tale of Two Identities", "Search Engines in the AI Era", "Automated Ableism"]);
     renderMarquee($("#marquee"));
     renderStats($("#stats"), $("#stats-note"));
@@ -387,8 +393,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   if (page === "news") renderNews($("#news-list"), { filters: $("#news-filters") });
   if (page === "press") { renderPress($("#press-grid")); renderWriting($("#writing")); renderAwards($("#awards")); }
-  if (page === "research") { renderDomains($("#domain-cards")); renderPublications($("#pubs")); }
-  if (page === "cv") { renderCV(); renderTalks($("#cv-talks")); }
+  if (page === "research") { renderDomains($("#domain-cards")); renderCollab($("#collab")); renderPublications($("#pubs")); }
+  if (page === "cv") { renderCV(); renderTalks($("#cv-talks")); renderCollab($("#collab")); }
 
   motion();
 });

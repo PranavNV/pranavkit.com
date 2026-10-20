@@ -3,7 +3,8 @@
    Trust & Safety sits at the core; the other domains orbit it. Each paper is
    a star placed between the hubs of every domain it belongs to, larger for
    first-author and award papers. Hover for details, click to open,
-   drag to rotate. Colors are read from the CSS theme variables.
+   drag to rotate. On touch, a tap previews, a second tap opens, and a
+   sideways swipe rotates. Colors are read from the CSS theme variables.
    ========================================================================== */
 
 class ResearchSpace {
@@ -12,6 +13,7 @@ class ResearchSpace {
     this.opts = Object.assign({ zoomable: false, panel: true }, opts);
     this.papers = PUBLICATIONS;
     this.reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this.touch = matchMedia("(pointer: coarse)").matches;
 
     this.yaw = 0.6;
     this.pitch = -0.32;
@@ -92,7 +94,9 @@ class ResearchSpace {
     }
 
     const hint = el("div", "space-hint mono");
-    hint.innerHTML = "<span>Drag to rotate</span><span>Hover a star</span><span>Click to open</span>";
+    hint.innerHTML = this.touch
+      ? "<span>Swipe to rotate</span><span>Tap a star</span><span>Tap again to open</span>"
+      : "<span>Drag to rotate</span><span>Hover a star</span><span>Click to open</span>";
     s.appendChild(hint);
 
     // Text alternative for screen readers
@@ -144,6 +148,8 @@ class ResearchSpace {
     let down = null, moved = 0, last = null;
 
     c.addEventListener("pointerdown", (e) => {
+      const r = c.getBoundingClientRect();
+      this.mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
       down = { x: e.clientX, y: e.clientY };
       last = { x: e.clientX, y: e.clientY, t: performance.now() };
       moved = 0;
@@ -185,9 +191,11 @@ class ResearchSpace {
       down = null;
     };
     c.addEventListener("pointerup", up);
+    // pointercancel fires when a vertical swipe hands over to page scrolling
     c.addEventListener("pointercancel", () => { down = null; c.classList.remove("dragging"); });
-    c.addEventListener("pointerleave", () => {
-      if (!down) { this.mouse = null; this.hover = null; this.hideTip(); c.classList.remove("pointing"); }
+    // Touch pointers "leave" as the finger lifts; keep the tapped star selected.
+    c.addEventListener("pointerleave", (e) => {
+      if (!down && e.pointerType === "mouse") { this.mouse = null; this.hover = null; this.hideTip(); c.classList.remove("pointing"); }
     });
     c.addEventListener("wheel", (e) => {
       if (!this.opts.zoomable && !e.ctrlKey && !e.metaKey) return;
@@ -207,7 +215,8 @@ class ResearchSpace {
     this.canvas.width = r.width * dpr;
     this.canvas.height = r.height * dpr;
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    this.scale = Math.min(this.w * 0.34, this.h * 0.47);
+    // narrow screens need extra side margin so hub labels stay on canvas
+    this.scale = Math.min(this.w * (this.w < 560 ? 0.27 : 0.34), this.h * 0.47);
   }
 
   start() {
@@ -275,11 +284,11 @@ class ResearchSpace {
     for (const n of this.proj.nodes) {
       if (!this.visible(n.node)) continue;
       const d = Math.hypot(n.sx - x, n.sy - y);
-      if (d < Math.max(10, n.rr + 6) && d - n.z * 3 < bd) { bd = d - n.z * 3; best = { type: "paper", node: n.node, sx: n.sx, sy: n.sy }; }
+      if (d < Math.max(this.touch ? 20 : 10, n.rr + (this.touch ? 12 : 6)) && d - n.z * 3 < bd) { bd = d - n.z * 3; best = { type: "paper", node: n.node, sx: n.sx, sy: n.sy }; }
     }
     if (!best) {
       for (const h of this.proj.hubs) {
-        if (Math.hypot(h.sx - x, h.sy - y) < 26) { best = { type: "hub", key: h.k, sx: h.sx, sy: h.sy }; break; }
+        if (Math.hypot(h.sx - x, h.sy - y) < (this.touch ? 34 : 26)) { best = { type: "hub", key: h.k, sx: h.sx, sy: h.sy }; break; }
       }
     }
     this.hover = best;
@@ -296,8 +305,17 @@ class ResearchSpace {
       <div class="tip-meta mono"><span style="color:${d0.color}">${p.vs}</span><span>${p.y}</span></div>
       <h4>${p.t}</h4>
       <div class="tip-auth">${boldMe(p.a)}</div>
-      <div class="tip-tags">${p.award ? `<span class="award-pill">★ ${p.award}</span>` : ""}${p.d.map((k) => `<span class="tag" style="color:${DOMAINS[k].color}">${DOMAINS[k].short}</span>`).join("")}</div>`;
+      <div class="tip-tags">${p.award ? `<span class="award-pill">★ ${p.award}</span>` : ""}${p.d.map((k) => `<span class="tag" style="color:${DOMAINS[k].color}">${DOMAINS[k].short}</span>`).join("")}</div>
+      ${this.touch ? `<div class="tip-open mono">Tap the star again to open ↗</div>` : ""}`;
     this.tipFor = p;
+    if (this.touch && this.w < 560) {
+      // Phones: dock the card at the top or bottom, away from the finger.
+      const th = this.tip.offsetHeight || 160;
+      this.tip.style.left = "16px";
+      this.tip.style.top = (h.sy > this.h / 2 ? 70 : this.h - th - 70) + "px";
+      this.tip.classList.add("show");
+      return;
+    }
     const tw = 320, pad = 16;
     let left = h.sx + 18, top = h.sy + 14;
     if (left + tw > this.w - pad) left = h.sx - tw - 18;
