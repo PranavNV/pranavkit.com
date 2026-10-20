@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV — Pranav N. Venkit</title>
+  <meta name="description" content="Experience, education, and service of Pranav N. Venkit." />
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=DM+Sans:opsz,wght@9..40,400..600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>document.documentElement.dataset.theme = new URLSearchParams(location.search).get("theme") || localStorage.getItem("theme") || "dark";</script>
+</head>
+<body data-page="cv">
+  <header class="page-hero">
+    <div class="hero-bg"><div class="blob b1" style="background:var(--teal)"></div><div class="blob b3"></div></div>
+    <div class="wrap">
+      <span class="mono muted reveal">Curriculum Vitae</span>
+      <h1 class="page-title reveal">The <em class='grad-text'>path</em> so far.</h1>
+      <p class="reveal">From building process bots at Honeywell, to a Ph.D. on bias in NLP, to building and auditing AI agents at Salesforce. <a href="assets/Pranav_Venkit_CV.pdf" target="_blank" rel="noopener">Download the PDF CV ↗</a></p>
+    </div>
+  </header>
+
+  <section class="wrap cv-grid" style="padding-bottom:60px">
+    <div>
+      <div class="sec-head reveal" style="margin-bottom:30px"><div><span class="mono muted">Experience</span></div></div>
+      <div class="timeline" id="cv-exp"></div>
+    </div>
+    <div>
+      <div class="sec-head reveal" style="margin-bottom:30px"><div><span class="mono muted">Education</span></div></div>
+      <div class="timeline" id="cv-edu"></div>
+      <div class="sec-head reveal" style="margin:30px 0 16px"><div><span class="mono muted">Service &amp; leadership</span></div></div>
+      <div id="cv-svc" class="reveal"></div>
+      <div class="sec-head reveal" style="margin:40px 0 16px"><div><span class="mono muted">Talks &amp; tutorials</span></div></div>
+      <div id="cv-talks" class="talks reveal"></div>
+    </div>
+  </section>
+  <section class="section wrap" style="padding-top:40px">
+    <div class="two-col">
+      <div class="reveal">
+        <span class="mono muted">Collaborators &amp; mentors</span>
+        <div class="collab" style="margin-top:18px">
+          <a href="https://shomir.net/" target="_blank" rel="noopener">Shomir Wilson · Penn State</a>
+          <a href="https://jasonwu0731.github.io/" target="_blank" rel="noopener">Jason Wu · Salesforce</a>
+          <a href="https://tingofurro.github.io/" target="_blank" rel="noopener">Philippe Laban</a>
+          <a href="https://faculty.washington.edu/aylin/" target="_blank" rel="noopener">Aylin Caliskan · UW</a>
+          <a href="https://datascience.uchicago.edu/people/christopher-graziul/" target="_blank" rel="noopener">Christopher Graziul · UChicago</a>
+          <a href="https://research.adobe.com/person/koustava-goswami/" target="_blank" rel="noopener">Koustava Goswami · Adobe</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="mono muted">Toolkit</span>
+        <div class="skills" style="margin-top:18px">
+          <span>Python</span><span>R</span><span>Java</span><span>C / C++</span><span>SQL</span><span>D3.js</span><span>P5.js</span><span>Processing</span><span>JavaScript</span><span>Mixed methods</span><span>Ethnography</span><span>Survey &amp; interview design</span><span>LLM evaluation</span><span>Benchmark design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/scholar.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/space.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
