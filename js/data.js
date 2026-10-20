@@ -228,9 +228,9 @@ const COLLABORATORS = [
   { n: "Philippe Laban", o: "Salesforce", u: "https://tingofurro.github.io/" },
   { n: "Avijit Ghosh", o: "Hugging Face", u: "https://evijit.github.io/" },
   { n: "Sourojit Ghosh", o: "UNC", u: "https://sourojitghosh.github.io/" },
-  { n: "Sanjana Gautam", o: "Microsoft" },
+  { n: "Sanjana Gautam", o: "Microsoft", u: "http://www.sanjanagautam.com/" },
   { n: "Aylin Caliskan", o: "UW", u: "https://faculty.washington.edu/aylin/" },
-  { n: "Christopher Graziul", o: "UChicago", u: "https://datascience.uchicago.edu/people/christopher-graziul/" },
+  { n: "Ioana Baldini", o: "Bloomberg" },
   { n: "Koustava Goswami", o: "Adobe", u: "https://research.adobe.com/person/koustava-goswami/" },
 ];
 
