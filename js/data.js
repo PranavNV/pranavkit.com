@@ -230,7 +230,7 @@ const COLLABORATORS = [
   { n: "Sourojit Ghosh", o: "UNC", u: "https://sourojitghosh.github.io/" },
   { n: "Sanjana Gautam", o: "Microsoft", u: "http://www.sanjanagautam.com/" },
   { n: "Aylin Caliskan", o: "UW", u: "https://faculty.washington.edu/aylin/" },
-  { n: "Ioana Baldini", o: "Bloomberg" },
+  { n: "Ioana Baldini", o: "Bloomberg", u: "https://scholar.google.com/citations?user=6Om-j_4AAAAJ&hl=en" },
   { n: "Koustava Goswami", o: "Adobe", u: "https://research.adobe.com/person/koustava-goswami/" },
 ];
 
