@@ -237,6 +237,8 @@ const COLLABORATORS = [
 /* Blogs and essays. src = where it was published. */
 const BLOGS = [
   { d: "Oct 2025", src: "Salesforce Blog", t: "Towards Trustworthy Enterprise Deep Research", u: "https://www.salesforce.com/blog/trusted-deepresearch/", note: "Co-written with the Salesforce AI Research team: what it takes for deep research agents to be trusted inside an enterprise, from controlled information flow to faithful, well-cited reports." },
+  { d: "Sep 2023", src: "AI Monks on Medium", t: "Unveiling the Hidden Impact: How Machine Bias Shapes Our World", u: "https://medium.com/aimonks/unveiling-the-hidden-impact-how-machine-bias-shapes-our-world-d9c3c777c26b", note: "Readers couldn't tell AI-written news about countries from human-written news, yet they rated it as more extreme and remembered its biased details better. A plain-language look at our AIES 2023 study on nationality bias and the Western gaze in AI text." },
+  { d: "Jul 2023", src: "Beyond Words and Algorithms on Medium", t: "How a Machine Views the World", u: "https://medium.com/@nlphci.phd/how-a-machine-views-the-world-727c774e0b21", note: "We prompted GPT-2 to write about the people of 194 countries and found that countries with fewer internet users got markedly more negative text. A plain-language take on our EACL 2023 paper on nationality bias in text generation." },
 ];
 
 /* Talks, tutorials, panels. */
