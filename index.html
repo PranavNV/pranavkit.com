@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=DM+Sans:opsz,wght@9..40,400..600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610221335" />
+  <link rel="stylesheet" href="css/style.css?v=202610221445" />
   <script>document.documentElement.dataset.theme = new URLSearchParams(location.search).get("theme") || localStorage.getItem("theme") || "light";</script>
 </head>
 <body data-page="home">
@@ -82,12 +82,12 @@
           <span class="mono muted">01 — Research Space</span>
           <h2>Six domains, <em>one constellation.</em></h2>
         </div>
-        <p>Every star is a paper, placed between the domains it bridges: deep research, agent pipelines, agent-to-agent communication, AI simulation, and human-centered AI, with Trust &amp; Safety at the core because it runs through all of them. Drag to spin it, hover or tap a star, or pick a domain.</p>
+        <p>Every star is a paper, placed between the domains it bridges, with Trust &amp; Safety at the core because it runs through all of them. Press play or drag the timeline to watch five years of research take shape.</p>
       </div>
-      <div class="space-shell reveal" data-space="home"></div>
-      <p class="mono muted" style="margin-top:14px;display:flex;gap:22px;flex-wrap:wrap">
-        <a href="research.html" style="margin-left:auto;color:var(--paper)">Open full-screen explorer →</a>
-      </p>
+      <div class="tl reveal" data-timeline>
+        <div class="space-shell"></div>
+        <div class="tl-bar"></div>
+      </div>
     </div>
   </section>
 
@@ -137,9 +137,10 @@
     </div>
   </section>
 
-  <script src="js/scholar.js?v=202610221335"></script>
-  <script src="js/data.js?v=202610221335"></script>
-  <script src="js/space.js?v=202610221335"></script>
-  <script src="js/main.js?v=202610221335"></script>
+  <script src="js/scholar.js?v=202610221445"></script>
+  <script src="js/data.js?v=202610221445"></script>
+  <script src="js/space.js?v=202610221445"></script>
+  <script src="js/timeline.js?v=202610221445"></script>
+  <script src="js/main.js?v=202610221445"></script>
 </body>
 </html>

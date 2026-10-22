@@ -355,6 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function boot(page) {
   $$("[data-space]").forEach((s) => new ResearchSpace(s, { zoomable: s.dataset.space === "full" }));
+  $$("[data-timeline]").forEach(buildTimeline);
 
   if (page === "home") {
     rotator($(".rotator"), [
