@@ -355,7 +355,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function boot(page) {
   $$("[data-space]").forEach((s) => new ResearchSpace(s, { zoomable: s.dataset.space === "full" }));
-  $$("[data-timeline]").forEach(buildTimeline);
 
   if (page === "home") {
     rotator($(".rotator"), [
@@ -369,6 +368,7 @@ function boot(page) {
     renderMarquee($("#marquee"));
     renderStats($("#stats"), $("#stats-note"));
     renderReach($("#reach-links"));
+    $$("[data-timeline]").forEach(buildTimeline); // js/timeline.js loads on the home page only
   }
   if (page === "news") renderNews($("#news-list"), { filters: $("#news-filters") });
   if (page === "press") { renderPress($("#press-grid")); renderWriting($("#writing")); renderAwards($("#awards")); }
