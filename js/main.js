@@ -133,18 +133,6 @@ function motion() {
   });
 }
 
-function tilt(sel) {
-  if (!matchMedia("(pointer: fine)").matches) return;
-  $$(sel).forEach((c) => {
-    c.addEventListener("pointermove", (e) => {
-      const r = c.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-      c.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
-    });
-    c.addEventListener("pointerleave", () => (c.style.transform = ""));
-  });
-}
-
 /* Typewriter that cycles through phrases, each tinted with a domain color */
 function rotator(node, phrases) {
   if (!node) return;
@@ -259,21 +247,6 @@ function renderPublications(root) {
       </div>`).join("");
   }
   draw();
-}
-
-/* ---------- Featured papers ---------- */
-function renderFeatured(root, titles) {
-  const picks = titles.map((s) => PUBLICATIONS.find((p) => p.t.startsWith(s))).filter(Boolean);
-  root.innerHTML = picks.map((p) => `
-    <a class="feat" href="${p.u}" target="_blank" rel="noopener" style="--c:${DOMAINS[p.d[0]].color}">
-      <div class="top"><span class="mono">${p.vs}</span>${p.award ? `<span class="award-pill">★ ${p.award}</span>` : `<span class="mono muted">${p.y}</span>`}</div>
-      <h3>${p.t}</h3>
-      <div class="bottom">
-        <div class="tags" style="display:flex;gap:6px;flex-wrap:wrap">${p.d.map(domTag).join("")}</div>
-        <span class="open" style="width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;flex:none">${ARROW}</span>
-      </div>
-    </a>`).join("");
-  tilt(".feat");
 }
 
 /* ---------- Press ---------- */
@@ -392,7 +365,6 @@ function boot(page) {
       ["stress-test agents before users do.", "var(--magenta)"],
       ["keep humans at the center of AI.", "var(--lime)"],
     ]);
-    renderFeatured($("#featured"), ["DeepTRACE", "Training Reasoning Models to Generate Diverse", "Belief Cascades", "A Tale of Two Identities", "Search Engines in the AI Era", "Automated Ableism"]);
     renderMarquee($("#marquee"));
     renderStats($("#stats"), $("#stats-note"));
     renderReach($("#reach-links"));

@@ -598,26 +598,6 @@ section { position: relative; z-index: 1; }
 .pub:hover .open { background: var(--paper); color: var(--ink); transform: rotate(-45deg); }
 .empty { padding: 60px 0; text-align: center; color: var(--muted); }
 
-/* Featured paper cards */
-.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.feat {
-  --c: var(--indigo);
-  display: flex;
-  flex-direction: column;
-  padding: 26px;
-  border-radius: var(--r);
-  background: linear-gradient(160deg, color-mix(in srgb, var(--c) 18%, var(--ink-2)), var(--ink-2) 55%);
-  border: 1px solid var(--line);
-  min-height: 300px;
-  transition: transform 0.4s var(--ease), border-color 0.3s;
-  transform-style: preserve-3d;
-}
-.feat:hover { border-color: var(--c); }
-.feat .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; color: var(--c); }
-.feat h3 { font: 400 1.45rem/1.2 var(--f-display); margin: 22px 0 auto; }
-.feat .bottom { display: flex; justify-content: space-between; align-items: end; margin-top: 26px; gap: 12px; }
-.feat .bottom .muted { font-size: 0.85rem; }
-
 /* ---------- News ---------- */
 .news-list { list-style: none; margin: 0; padding: 0; }
 .news-item {
@@ -818,7 +798,7 @@ footer a:hover { color: var(--paper); }
 @media (max-width: 980px) {
   .hero-grid, .two-col, .cv-grid, .domain-block-head { grid-template-columns: 1fr; gap: 40px; }
   .portrait-wrap { max-width: 360px; order: -1; }
-  .feat-grid, .press-grid, .domain-grid { grid-template-columns: 1fr 1fr; }
+  .press-grid, .domain-grid { grid-template-columns: 1fr 1fr; }
   .awards { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr 1fr; }
   .stat:nth-child(3) { border-left: 0; }
@@ -846,7 +826,7 @@ footer a:hover { color: var(--paper); }
     display: none;
   }
   .nav.open .nav-links { display: flex; }
-  .feat-grid, .press-grid, .domain-grid, .reach-list, .writing-grid, .hl-grid { grid-template-columns: 1fr; }
+  .press-grid, .domain-grid, .reach-list, .writing-grid, .hl-grid { grid-template-columns: 1fr; }
   .news-item { grid-template-columns: 1fr; gap: 6px; }
   .year-group { grid-template-columns: 1fr; gap: 6px; }
   .year-group .yr { position: static; }
