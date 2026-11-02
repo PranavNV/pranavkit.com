@@ -58,7 +58,7 @@ function chrome() {
   const nav = document.createElement("nav");
   nav.className = "nav";
   nav.innerHTML = `
-    <a class="brand" href="index.html">Pranav <i>N.</i> Venkit</a>
+    <a class="brand" href="index.html">Pranav <i class="grad-text">N. Venkit</i></a>
     <div class="nav-links">${PAGES.map(([h, l]) => `<a href="${h}" class="${h === here ? "active" : ""}">${l}</a>`).join("")}</div>
     <button class="icon-btn theme-btn" aria-label="Toggle light and dark theme" title="Toggle theme">${SUN}${MOON}</button>
     <button class="icon-btn nav-toggle" aria-label="Menu">☰</button>`;
