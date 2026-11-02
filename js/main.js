@@ -27,6 +27,10 @@ function guessDomains(t) {
   return d.length ? d.slice(0, 2) : ["T"];
 }
 
+// Scholar text comes from the open web and is rendered with innerHTML, so it is
+// escaped here and only Scholar links are kept.
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+
 (function mergeScholar() {
   if (typeof SCHOLAR_DATA === "undefined") return;
   const norm = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 48);
@@ -34,7 +38,8 @@ function guessDomains(t) {
   for (const s of SCHOLAR_DATA.papers) {
     const p = byTitle.get(norm(s.t));
     if (p) continue;
-    PUBLICATIONS.unshift({ y: s.y || new Date().getFullYear(), t: s.t, a: s.a, v: s.v || "Google Scholar", vs: (s.v || "Paper").split(/[(,]/)[0].trim(), u: s.u, d: guessDomains(s.t) });
+    const u = /^https:\/\/scholar\.google\.com\//.test(s.u) ? esc(s.u) : SCHOLAR;
+    PUBLICATIONS.unshift({ y: +s.y || new Date().getFullYear(), t: esc(s.t), a: esc(s.a), v: esc(s.v || "Google Scholar"), vs: esc((s.v || "Paper").split(/[(,]/)[0].trim()), u, d: guessDomains(s.t) });
   }
   PUBLICATIONS.sort((a, b) => b.y - a.y);
 })();
