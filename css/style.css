@@ -491,8 +491,9 @@ section { position: relative; z-index: 1; }
   font-size: 0.8rem;
   color: var(--muted);
 }
-.space-key summary { cursor: pointer; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper); }
-.space-key ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 5px; }
+/* the summary fills the box so the whole button is tappable */
+.space-key summary { margin: -10px -14px; padding: 10px 14px; cursor: pointer; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper); }
+.space-key ul { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 5px; }
 .space-key li { display: flex; align-items: center; gap: 9px; }
 .space-key svg { width: 22px; height: 22px; flex: none; }
 
@@ -791,6 +792,8 @@ section { position: relative; z-index: 1; }
 footer { padding: 60px 0 40px; color: var(--dim); font-size: 0.88rem; position: relative; z-index: 1; }
 footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 28px; }
 footer .socials { display: flex; gap: 18px; }
+/* padding widens the tap area without moving the links */
+footer .socials a { padding: 12px 4px; margin: -12px -4px; }
 footer a:hover { color: var(--paper); }
 
 /* ---------- Theme toggle ---------- */
@@ -906,6 +909,7 @@ footer a:hover { color: var(--paper); }
   .space-legend .chip .n { display: none; }
   .space-hint { display: none; }
   .space-key { left: 16px; bottom: 16px; padding: 9px 12px; max-width: calc(100% - 170px); }
+  .space-key summary { margin: -9px -12px; padding: 9px 12px; }
   .space-key[open] { max-width: none; right: 16px; bottom: 64px; }
   .space-shell.full { height: min(72vh, 600px); }
   .portrait { inset: 15%; }

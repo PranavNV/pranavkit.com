@@ -232,6 +232,9 @@ class ResearchSpace {
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     // narrow screens need extra side margin so hub labels stay on canvas
     this.scale = Math.min(this.w * (this.w < 560 ? 0.27 : 0.34), this.h * 0.47);
+    // tall phone boxes: start looking down on the ring of hubs so it fills the
+    // height instead of flattening into a strip of overlapping labels
+    if (this.w < 560 && this.h > this.w && !this.tilted) { this.tilted = true; this.pitch = -0.95; this.yaw = 0.2; }
   }
 
   start() {
