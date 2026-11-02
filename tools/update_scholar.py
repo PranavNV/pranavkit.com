@@ -9,15 +9,22 @@ curate it. Run it locally or let .github/workflows/scholar.yml run it weekly.
 
     python3 tools/update_scholar.py
 
-Standard library only. If Scholar blocks the request, the old file is kept.
+Scholar blocks GitHub's servers (HTTP 403), so when SERPAPI_KEY is set the
+data comes from SerpApi's Google Scholar Author API instead (free tier: 100
+calls/month; a weekly run uses one). Without the key it reads Scholar
+directly, which works from a home or office connection.
+
+Standard library only. If the request fails, the old file is kept.
 """
 
 import datetime
 import html
 import json
+import os
 import pathlib
 import re
 import sys
+import urllib.parse
 import urllib.request
 
 USER = "oxgNwDsAAAAJ"
@@ -57,7 +64,7 @@ def parse_rows(page):
     return rows
 
 
-def main():
+def from_scholar():
     first = fetch(0)
     stats = [int(x) for x in re.findall(r'class="gsc_rsb_std">(\d+)<', first)]
     papers = parse_rows(first)
@@ -67,12 +74,56 @@ def main():
     while len(papers) == start:
         papers += parse_rows(fetch(start))
         start += 100
+    return stats[0], stats[2], stats[4], papers
+
+
+def from_serpapi(key):
+    def get(start):
+        q = urllib.parse.urlencode({
+            "engine": "google_scholar_author", "author_id": USER, "hl": "en",
+            "sort": "pubdate", "num": 100, "start": start, "api_key": key,
+        })
+        with urllib.request.urlopen(f"https://serpapi.com/search.json?{q}", timeout=60) as r:
+            return json.load(r)
+
+    first = get(0)
+    if "error" in first:
+        sys.exit(f"SerpApi error: {first['error']}; keeping the old js/scholar.js.")
+    table = {k: v["all"] for row in first.get("cited_by", {}).get("table", []) for k, v in row.items()}
+    articles = first.get("articles", [])
+    start = 100
+    while len(articles) == start:
+        articles += get(start).get("articles", [])
+        start += 100
+    if not table or not articles:
+        sys.exit("SerpApi returned no profile data; keeping the old js/scholar.js.")
+
+    papers = []
+    for a in articles:
+        year = str(a.get("year") or "")
+        venue = a.get("publication", "")
+        if year and venue.endswith(", " + year):
+            venue = venue[: -len(year) - 2]
+        papers.append({
+            "t": a.get("title", ""),
+            "a": a.get("authors", ""),
+            "v": venue,
+            "y": int(year) if year.isdigit() else None,
+            "c": (a.get("cited_by") or {}).get("value") or 0,
+            "u": a.get("link", ""),
+        })
+    return table["citations"], table["h_index"], table["i10_index"], papers
+
+
+def main():
+    key = os.environ.get("SERPAPI_KEY")
+    citations, hindex, i10, papers = from_serpapi(key) if key else from_scholar()
 
     data = {
         "updated": datetime.date.today().isoformat(),
-        "citations": stats[0],
-        "hindex": stats[2],
-        "i10": stats[4],
+        "citations": citations,
+        "hindex": hindex,
+        "i10": i10,
         "papers": papers,
     }
     OUT.write_text(
@@ -80,7 +131,7 @@ def main():
         f"const SCHOLAR_DATA = {json.dumps(data, ensure_ascii=False, indent=1)};\n",
         encoding="utf-8",
     )
-    print(f"Wrote {OUT.name}: {len(papers)} papers, {stats[0]} citations, h-index {stats[2]}.")
+    print(f"Wrote {OUT.name}: {len(papers)} papers, {citations} citations, h-index {hindex}.")
 
 
 if __name__ == "__main__":
