@@ -183,6 +183,17 @@ const PRESS = [
   { d: "May 2021", o: "Penn State News", t: "Study of police language aims to find patterns that may lead to tragic outcomes", u: "https://www.psu.edu/news/research/story/study-police-language-aims-find-patterns-may-lead-tragic-outcomes" },
 ];
 
+/* One milestone per year for the home-page timeline: `l` labels the scrubber,
+   `t` is the line shown while that year plays. */
+const MILESTONES = {
+  2021: { l: "First papers", t: "Started asking how sentiment and toxicity models treat people with disabilities." },
+  2022: { l: "COLING '22", t: "Implicit disability bias in pretrained language models." },
+  2023: { l: "EMNLP award", t: "Outstanding Paper at EMNLP, plus Best Short Paper at TrustNLP and Best Student Paper at DocEng." },
+  2024: { l: "Salesforce intern", t: "Interned at Salesforce AI Research; DEI Recognition Award at CSCW." },
+  2025: { l: "Ph.D. → Salesforce", t: "Finished the Ph.D. (Best AI Dissertation, Honorable Mention) and joined Salesforce AI Research." },
+  2026: { l: "Agents in the wild", t: "Lecture at MLSS (Columbia), the KDD tutorial, and new work on agents talking to agents." },
+};
+
 const AWARDS = [
   { y: 2025, t: "Best AI Dissertation — Honorable Mention", o: "Penn State", note: "For the thesis “Society and Bias: Uncovering Automated Prejudices in Sociotechnical NLP Systems.”" },
   { y: 2025, t: "IST Travel Award", o: "Penn State IST", note: "For presenting at EMNLP 2024 in Miami." },

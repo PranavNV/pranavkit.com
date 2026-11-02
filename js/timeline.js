@@ -1,7 +1,8 @@
 /* ==========================================================================
    Research Space timeline (home page). A wide constellation plays
-   like a short film, adding each year's papers in order; a scrubber below
-   (a stacked histogram of papers per year) lets visitors drag through time.
+   like a short film, adding each year's papers in order, with a milestone
+   per year (MILESTONES in data.js). Journey / Explore tabs on top switch
+   between the film and the finished sky; a scrubber below drags through time.
    ========================================================================== */
 
 class TimelineSpace extends ResearchSpace {
@@ -88,25 +89,28 @@ function buildTimeline(root) {
   const cap = el("div", "tl-cap");
   shell.appendChild(cap);
 
-  // Scrubber: one column per year with a bar stacked by main domain.
+  // Tabs and play button above the box: navigation lives at the top.
+  const head = el("div", "tl-head");
+  head.innerHTML = `
+    <div class="tl-tabs"><button class="tl-tab" aria-pressed="true">Journey</button><button class="tl-tab" aria-pressed="false">Explore</button></div>
+    <button class="tl-play icon-btn" aria-label="Play"></button>`;
+  root.insertBefore(head, shell);
+  const [journey, explore] = $$(".tl-tab", head), play = $(".tl-play", head);
+
+  // Scrubber: one stop per year, labelled with that year's milestone.
   const bar = $(".tl-bar", root);
-  const max = Math.max(...byYear.map((l) => l.length));
   const order = Object.keys(DOMAINS);
+  const ms = (i) => MILESTONES[years[i]] || {};
   bar.innerHTML = `
-    <button class="tl-play icon-btn" aria-label="Play"></button>
     <div class="tl-track" style="--n:${Y}" role="slider" tabindex="0" aria-label="Year" aria-valuemin="${years[0]}" aria-valuemax="${years[Y - 1]}">
-      <div class="tl-cols">${byYear.map((l, i) => {
-        const seg = order.map((k) => [k, l.filter((n) => n.p.d[0] === k).length]).filter(([, c]) => c);
-        return `<div class="tl-col" data-i="${i}">
-          <div class="tl-stack" style="height:${(l.length / max) * 100}%">${seg.map(([k, c]) => `<i style="flex:${c};background:${DOMAINS[k].color}"></i>`).join("")}</div>
-          <span class="tl-n mono">${l.length}</span>
-          <b class="tl-dot"></b>
-          <span class="tl-y mono">${years[i]}</span>
-        </div>`;
-      }).join("")}</div>
       <div class="tl-rail"><div class="tl-fill"></div><div class="tl-knob"></div></div>
+      <div class="tl-cols">${years.map((y, i) => `<div class="tl-col">
+          <b class="tl-dot"></b>
+          <span class="tl-y mono">${y}</span>
+          <span class="tl-m">${ms(i).l || ""}</span>
+        </div>`).join("")}</div>
     </div>`;
-  const track = $(".tl-track", bar), fill = $(".tl-fill", bar), knob = $(".tl-knob", bar), play = $(".tl-play", bar);
+  const track = $(".tl-track", bar), fill = $(".tl-fill", bar), knob = $(".tl-knob", bar);
   const cols = $$(".tl-col", bar);
 
   let shown = -1, shownDone = null;
@@ -123,6 +127,8 @@ function buildTimeline(root) {
     });
     track.setAttribute("aria-valuenow", years[space.year]);
     shell.classList.toggle("tl-done", space.done);
+    journey.setAttribute("aria-pressed", String(!space.done));
+    explore.setAttribute("aria-pressed", String(space.done));
 
     if (shown === space.year && shownDone === space.done) return;
     shown = space.year; shownDone = space.done;
@@ -135,8 +141,9 @@ function buildTimeline(root) {
       return;
     }
     const list = byYear[space.year], k = matchMedia("(max-width: 760px)").matches ? 1 : 3;
+    const m = ms(space.year);
     cap.innerHTML = `<div class="tl-big">${years[space.year]}</div>
-      <div class="mono muted">+${list.length} paper${list.length > 1 ? "s" : ""} · ${total} total</div>
+      ${m.l ? `<div class="mono tl-ml">${m.l}</div><p>${m.t}</p>` : ""}
       <ul>${list.slice(-k).reverse().map((n) => `<li><i style="background:${DOMAINS[n.p.d[0]].color}"></i><a href="${n.p.u}" target="_blank" rel="noopener">${n.p.t}</a></li>`).join("")}</ul>
       ${list.length > k ? `<div class="mono muted tl-more">+${list.length - k} more</div>` : ""}`;
   };
@@ -179,6 +186,8 @@ function buildTimeline(root) {
     if (space.v >= END) { space.v = 0; render(); }
     setPlaying(true);
   });
+  journey.addEventListener("click", () => { if (!playing) play.click(); });
+  explore.addEventListener("click", () => seek(END));
 
   // Drag the scrubber; release settles on the nearest year's dot.
   const at = (e) => {
