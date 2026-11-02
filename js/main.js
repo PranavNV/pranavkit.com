@@ -107,7 +107,9 @@ function chrome() {
 function motion() {
   const io = new IntersectionObserver((ents) => {
     for (const e of ents) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-  }, { threshold: 0.12 });
+  // Trigger on the top edge entering the screen, not a share of the element:
+  // a long list (news on a phone) can never be 12% visible at once.
+  }, { rootMargin: "0px 0px -8% 0px" });
   $$(".reveal, .stagger").forEach((n) => io.observe(n));
 
   // count-up numbers

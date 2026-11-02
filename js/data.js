@@ -111,7 +111,7 @@ const PUBLICATIONS = [
 
 /* News. k = kind: paper | award | media | role | update */
 const NEWS = [
-  { d: "Oct 2026", k: "paper", h: 'New autoresearch preprint: <a href="https://arxiv.org/abs/2610.22324">“Training Reasoning Models to Generate Diverse Scientific Ideas”</a>. Set-level RL teaches an 8B model to propose grounded ideas that are both strong and distinct from one another.' },
+  { d: "Oct 2026", k: "paper", h: 'New paper by our intern <a href="https://manyawadhwa.github.io/">Manya Wadhwa</a>, <a href="https://arxiv.org/abs/2610.22324">“Training Reasoning Models to Generate Diverse Scientific Ideas”</a>, where set-level RL teaches an 8B model to propose grounded ideas that are both strong and distinct from one another.' },
   { d: "Aug 2026", k: "talk", h: 'Co-presented the tutorial <a href="https://esantus.github.io/agents-in-the-wild-kdd2026/">“Agents in the Wild: Where Research Meets Deployment”</a> at <b>KDD 2026</b> in Jeju, Korea.' },
   { d: "Jul 2026", k: "talk", h: 'Presented our poster on <a href="https://aclanthology.org/2026.acl-industry.116/">“Don\'t Stop Early”</a> (scalable enterprise deep research) at <b>ACL 2026</b> in San Diego.' },
   { d: "Jun 2026", k: "talk", h: 'Invited speaker at the <a href="https://cfe.columbia.edu/content/mlss2"><b>Machine Learning Summer School (MLSS) 2026</b></a> at Columbia University. I taught “Evaluating AI Agents in the Era of Benchmarks” to ~200 PhD students: how to rigorously measure, benchmark, and stress-test agentic systems on complex, real-world tasks. Thanks to Ioana Baldini and Enrico Santus for planning the AI agent sessions with me.' },
