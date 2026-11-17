@@ -11,8 +11,10 @@
   <link rel="icon" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=DM+Sans:opsz,wght@9..40,400..600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202611021318" />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=switzer@400,500,600,400i&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=202611171057" />
   <script>document.documentElement.dataset.theme = new URLSearchParams(location.search).get("theme") || localStorage.getItem("theme") || "light";</script>
 </head>
 <body data-page="home">
@@ -76,17 +78,25 @@
 
   <!-- ============ HIGHLIGHTS ============ -->
   <section class="wrap highlights">
-    <span class="mono muted">Highlights · 2026</span>
-    <div class="hl-grid stagger">
+    <div class="hl-head reveal"><span class="mono">Highlights</span><span class="mono">2026</span></div>
+    <div class="hl-list stagger">
       <a class="hl" href="https://cfe.columbia.edu/content/mlss2" target="_blank" rel="noopener" style="--c:var(--cyan)">
-        <span class="mono k">Invited lecture · MLSS 2026 · Columbia University, NYC</span>
-        <h3>Evaluating AI Agents in the <em>Era of Benchmarks</em></h3>
-        <p>Taught ~200 PhD students at the Machine Learning Summer School how to rigorously measure, benchmark, and stress-test agentic systems as they take on complex, real-world tasks.</p>
+        <span class="hl-n mono">01</span>
+        <span class="hl-meta mono"><b>Invited lecture</b><span>MLSS 2026</span><span>Columbia University, NYC</span></span>
+        <div class="hl-body">
+          <h3>Evaluating AI Agents in the <em>Era of Benchmarks</em></h3>
+          <p>Taught ~200 PhD students at the Machine Learning Summer School how to rigorously measure, benchmark, and stress-test agentic systems as they take on complex, real-world tasks.</p>
+        </div>
+        <span class="hl-go" aria-hidden="true">↗</span>
       </a>
-      <a class="hl" href="https://esantus.github.io/agents-in-the-wild-kdd2026/" target="_blank" rel="noopener" style="--c:var(--indigo)">
-        <span class="mono k">Tutorial · KDD 2026 · Jeju, Korea</span>
-        <h3>Agents in the Wild: <em>Where Research Meets Deployment</em></h3>
-        <p>A tutorial on what changes when agents leave the lab, co-presented with G.H. Yang, H. Sedghamiz, E. Santus, V. Dibia, and I. Baldini.</p>
+      <a class="hl" href="https://esantus.github.io/agents-in-the-wild-kdd2026/" target="_blank" rel="noopener" style="--c:var(--magenta)">
+        <span class="hl-n mono">02</span>
+        <span class="hl-meta mono"><b>Tutorial</b><span>KDD 2026</span><span>Jeju, Korea</span></span>
+        <div class="hl-body">
+          <h3>Agents in the Wild: <em>Where Research Meets Deployment</em></h3>
+          <p>A tutorial on what changes when agents leave the lab, co-presented with G.H. Yang, H. Sedghamiz, E. Santus, V. Dibia, and I. Baldini.</p>
+        </div>
+        <span class="hl-go" aria-hidden="true">↗</span>
       </a>
     </div>
   </section>
@@ -137,10 +147,10 @@
     </div>
   </section>
 
-  <script src="js/scholar.js?v=202611021318"></script>
-  <script src="js/data.js?v=202611021318"></script>
-  <script src="js/space.js?v=202611021318"></script>
-  <script src="js/timeline.js?v=202611021318"></script>
-  <script src="js/main.js?v=202611021318"></script>
+  <script src="js/scholar.js?v=202611171057"></script>
+  <script src="js/data.js?v=202611171057"></script>
+  <script src="js/space.js?v=202611171057"></script>
+  <script src="js/timeline.js?v=202611171057"></script>
+  <script src="js/main.js?v=202611171057"></script>
 </body>
 </html>

@@ -458,7 +458,7 @@ class ResearchSpace {
     ctx.fillStyle = this.light ? `rgba(${this.fg},${dim ? 0.35 : 0.9})` : `rgba(255,255,255,${dim ? 0.4 : 1})`;
     ctx.beginPath(); ctx.arc(h.sx, h.sy, 4 * h.f, 0, Math.PI * 2); ctx.fill();
 
-    ctx.font = `600 ${Math.round(10.5 * clamp(h.f, 0.85, 1.25))}px "Geist Mono", monospace`;
+    ctx.font = `600 ${Math.round(10.5 * clamp(h.f, 0.85, 1.25))}px "JetBrains Mono", monospace`;
     ctx.textAlign = "center";
     ctx.fillStyle = dim ? `rgba(${this.fg},.3)` : color;
     const label = d.short.toUpperCase();
