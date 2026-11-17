@@ -222,13 +222,14 @@ const EDUCATION = [
 ];
 
 const SERVICE = [
+  { y: "2026", t: "Area Chair", o: "ARR 2026" },
+  { y: "2026", t: "Program Committee", o: "AIES 2026" },
   { y: "2025", t: "Area Chair", o: "ACL 2025 · EMNLP 2025" },
   { y: "2025", t: "Program Committee", o: "FAccT 2025 · AIES 2025" },
   { y: "2024", t: "Program Committee", o: "FAccT 2024" },
+  { y: "2023–24", t: "Project Mentor", o: "NSF Careers Program — “Bias and Fairness in ML: Mitigating Bias in Unstructured Data”" },
   { y: "2023", t: "Program Committee", o: "TrustNLP @ ACL 2023" },
-  { y: "2022–25", t: "Reviewer", o: "FAccT, EMNLP, ACL, CHI, COLING, Scientific Reports" },
   { y: "2023", t: "Organizer & Volunteer", o: "EMNLP 2023 · FAccT 2023" },
-  { y: "—", t: "Project Mentor", o: "NSF Careers Program — “Bias and Fairness in ML: Mitigating Bias in Unstructured Data”" },
   { y: "2020", t: "Vice President", o: "Graduate Student Association in IST (GIST)" },
 ];
 
