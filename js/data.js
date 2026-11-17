@@ -14,7 +14,7 @@ const DOMAINS = {
     short: "Trust & Safety",
     cv: "--magenta",
     blurb:
-      "The through-line of everything: auditing language technologies for sociodemographic bias, cultural harm, ableism, and hallucination, and asking what it takes for an AI system to deserve trust.",
+      "The through-line of everything: auditing language technologies for sociodemographic bias, cultural harm, ableism, and hallucination; evaluating agents for safety and privacy; and post-training models to behave better, all asking what it takes for an AI system to deserve trust.",
   },
   D: {
     name: "Deep Research & Autoresearch",
@@ -111,6 +111,7 @@ const PUBLICATIONS = [
 
 /* News. k = kind: paper | award | media | role | update */
 const NEWS = [
+  { d: "Oct 2026", k: "role", h: "Promoted to <b>Senior Research Scientist</b> at Salesforce AI Research." },
   { d: "Oct 2026", k: "paper", h: 'New paper by our intern <a href="https://manyawadhwa.github.io/">Manya Wadhwa</a>, <a href="https://arxiv.org/abs/2610.22324">“Training Reasoning Models to Generate Diverse Scientific Ideas”</a>, where set-level RL teaches an 8B model to propose grounded ideas that are both strong and distinct from one another.' },
   { d: "Aug 2026", k: "talk", h: 'Co-presented the tutorial <a href="https://esantus.github.io/agents-in-the-wild-kdd2026/">“Agents in the Wild: Where Research Meets Deployment”</a> at <b>KDD 2026</b> in Jeju, Korea.' },
   { d: "Jul 2026", k: "talk", h: 'Presented our poster on <a href="https://aclanthology.org/2026.acl-industry.116/">“Don\'t Stop Early”</a> (scalable enterprise deep research) at <b>ACL 2026</b> in San Diego.' },
@@ -209,7 +210,8 @@ const AWARDS = [
 ];
 
 const EXPERIENCE = [
-  { when: "2025 — now", role: "Research Scientist", org: "Salesforce AI Research · Interactive AI", where: "Palo Alto, CA", pts: ["Deep research and autoresearch: evidence-aware termination, faithful report writing, and citation auditing for enterprise research agents (ACL 2026, ICLR 2026), plus RL-trained reasoning models for diverse scientific ideation.", "AI simulation and persona alignment: socially-grounded personas, interview-grounded simulation (COLM 2026), and long-horizon persona drift in AI companions.", "Agent-to-agent communication and agent evaluation: belief cascades and multimodal persuasion in agent networks (EMNLP 2026), and MLLM-as-a-judge reliability."] },
+  { when: "Oct 2026 — now", role: "Senior Research Scientist", org: "Salesforce AI Research · Interactive AI", where: "Palo Alto, CA", pts: ["Trust & safety for agents: safety and privacy evaluation of agentic systems: where agents leak data, take unsafe actions, or fail policy, and judges that catch these failures in agent-to-agent traffic.", "Model post-training: turning those evaluations into training data, and post-training models (SFT, RL with GRPO/DPO) for safer behavior and for diverse, grounded scientific ideation.", "Persona-based decision making: socially-grounded personas for user simulation, and how long-horizon persona drift in AI companions changes the decisions agents make.", "Agent-to-agent communication: how persuasion and beliefs spread through LLM agent networks, and multimodal persuasion between agents."] },
+  { when: "May 2025 — Sep 2026", role: "Research Scientist", org: "Salesforce AI Research · Interactive AI", where: "Palo Alto, CA", pts: ["Deep research: evidence-aware termination for enterprise deep research (ACL 2026), citation auditing of deep research agents (DeepTRACE, ICLR 2026), and claim-level redesign of report writing for faithfulness.", "AI simulation: interview-grounded personality simulation (InterviewSim, COLM 2026) and persona frameworks for user simulation.", "Agent evaluation: persuasion in agent networks (EMNLP 2026) and MLLM-as-a-judge reliability."] },
   { when: "Summer 2024", role: "AI Research Intern", org: "Salesforce AI Research", where: "Palo Alto, CA", pts: ["Mentored by Jason Wu and Philippe Laban.", "Built the Answer Engine Evaluation benchmark to audit RAG systems and answer engines (Perplexity, Bing Copilot) as sociotechnical systems."] },
   { when: "2021 — 2025", role: "Research Assistant", org: "Penn State · Human Language Technologies Lab", where: "University Park, PA", pts: ["Sociodemographic bias in NLP, PII extraction risks from social media, and the Primed to (re)act project on broadcast police communications with UChicago."] },
   { when: "2019 — 2021", role: "Graduate Assistant · Project iOn", org: "Penn State", where: "University Park, PA", pts: ["Collaborative learning with dynamic visualizations; interviews, surveys, and co-design studies."] },
