@@ -198,7 +198,15 @@ img { max-width: 100%; display: block; }
   padding: 120px 0 110px;
   overflow: hidden;
 }
-.hero-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  /* the header clips the blurred blobs; fade them out instead of cutting them off */
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent);
+  mask-image: linear-gradient(to bottom, #000 45%, transparent);
+}
 .blob {
   position: absolute;
   border-radius: 50%;

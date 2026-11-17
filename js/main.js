@@ -366,7 +366,7 @@ function boot(page) {
   if (page === "home") {
     rotator($(".rotator"), [
       ["build AI agents people can trust.", "var(--indigo)"],
-      ["test AI before it meets real people.", "var(--magenta)"],
+      ["develop AI designed for real people.", "var(--magenta)"],
       ["evaluate what AI search actually cites.", "var(--cyan)"],
       ["study how AI agents talk to each other.", "var(--teal)"],
       ["ask who LLM personas speak for.", "var(--orchid)"],
