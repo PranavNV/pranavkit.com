@@ -21,7 +21,7 @@ const thesis = PUBLICATIONS.filter((p) => p.vs === "PhD Thesis");
 
 let pubs = `\\cvsection{Publications}\n\n{\\paragraphstyle\n\\cvsubsection{Peer-Reviewed Conference and Journal Papers}\n\\vspace{3mm}\\begin{cvitems}\n` +
   peer.map(item).join("\n") + `\n\\end{cvitems}\n\n\\cvsubsection{Recent Preprints}\n\\vspace{3mm}\\begin{cvitems}\n` +
-  pre.map(item).join("\n") + `\n\\end{cvitems}\n\n\\cvsubsection{Dissertation}\n\\vspace{3mm}\\begin{cvitems}\n` +
+  pre.map(item).join("\n") + `\n\\end{cvitems}\n\n\\needspace{5\\baselineskip}\\cvsubsection{Dissertation}\n\\vspace{3mm}\\begin{cvitems}\n` +
   thesis.map(item).join("\n") + `\n\\end{cvitems}\n}\n`;
 fs.writeFileSync(path.join(__dirname, "publications.tex"), pubs);
 
