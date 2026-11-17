@@ -258,9 +258,6 @@ const TALKS = [
   { d: "Aug 2026", t: "Tutorial · Agents in the Wild: Where Research Meets Deployment", o: "KDD 2026 · Jeju, Korea · with G.H. Yang, H. Sedghamiz, E. Santus, V. Dibia, I. Baldini", u: "https://esantus.github.io/agents-in-the-wild-kdd2026/" },
   { d: "Jul 2026", t: "Poster · Don't Stop Early: Scalable Enterprise Deep Research", o: "ACL 2026 · Industry Track", u: "https://aclanthology.org/2026.acl-industry.116/" },
   { d: "Jun 2026", t: "Invited lecture · Evaluating AI Agents in the Era of Benchmarks", o: "Machine Learning Summer School (MLSS) 2026 · Columbia University, NYC", u: "https://cfe.columbia.edu/content/mlss2" },
-  { d: "Nov 2024", t: "An Audit on the Perspectives and Challenges of Hallucinations in NLP", o: "EMNLP 2024 · Miami", u: "https://aclanthology.org/2024.emnlp-main.375.pdf" },
-  { d: "Oct 2024", t: "Doctoral Consortium · The Need for Inclusive NLP", o: "AIES 2024 · San Jose", u: "https://ojs.aaai.org/index.php/AIES/article/view/31905" },
-  { d: "Dec 2023", t: "The Sentiment Problem (Outstanding Paper)", o: "EMNLP 2023 · Singapore", u: "https://aclanthology.org/2023.emnlp-main.848/" },
 ];
 
 /* Set `email` to show an Email button in the footer and the reach-out section. */
