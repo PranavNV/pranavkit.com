@@ -365,12 +365,12 @@ function boot(page) {
 
   if (page === "home") {
     rotator($(".rotator"), [
-      ["audit what deep research agents cite.", "var(--cyan)"],
-      ["build AI that helps do research.", "var(--indigo)"],
-      ["study how agents talk to agents.", "var(--teal)"],
-      ["align simulated users with real people.", "var(--orchid)"],
-      ["stress-test agents before users do.", "var(--magenta)"],
-      ["keep humans at the center of AI.", "var(--lime)"],
+      ["build AI agents people can trust.", "var(--indigo)"],
+      ["test AI before it meets real people.", "var(--magenta)"],
+      ["evaluate what AI search actually cites.", "var(--cyan)"],
+      ["study how AI agents talk to each other.", "var(--teal)"],
+      ["ask who LLM personas speak for.", "var(--orchid)"],
+      ["design AI around the people it serves.", "var(--lime)"],
     ]);
     renderMarquee($("#marquee"));
     renderStats($("#stats"), $("#stats-note"));

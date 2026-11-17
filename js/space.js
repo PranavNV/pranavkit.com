@@ -3,8 +3,9 @@
    Trust & Safety sits at the core; the other domains orbit it. Each paper is
    a star placed between the hubs of every domain it belongs to, larger for
    first-author and award papers. Hover for details, click to open,
-   drag to rotate. On touch, a tap previews, a second tap opens, and a
-   sideways swipe rotates. Colors are read from the CSS theme variables.
+   drag to rotate. On touch, a tap previews, a second tap opens, a
+   sideways swipe rotates, two fingers pinch to zoom and pan, and a
+   double tap resets. Colors are read from the CSS theme variables.
    ========================================================================== */
 
 class ResearchSpace {
@@ -21,6 +22,10 @@ class ResearchSpace {
     this.vpitch = 0;
     this.zoom = 1;
     this.targetZoom = 1;
+    // screen-space offset, so zooming can hold the point under the fingers
+    this.pan = { x: 0, y: 0 };
+    this.targetPan = { x: 0, y: 0 };
+    this.maxZoom = this.touch ? 3.5 : 2.2;
     this.focusKey = null;
     this.hover = null;
     this.intro = 0;
@@ -80,10 +85,10 @@ class ResearchSpace {
       b.addEventListener("click", fn);
       ctr.appendChild(b);
     };
-    mk("+", "Zoom in", () => (this.targetZoom = Math.min(2.2, this.targetZoom * 1.2)));
-    mk("−", "Zoom out", () => (this.targetZoom = Math.max(0.6, this.targetZoom / 1.2)));
+    mk("+", "Zoom in", () => this.zoomBy(1.2));
+    mk("−", "Zoom out", () => this.zoomBy(1 / 1.2));
     mk("⟲", "Reset view", () => {
-      this.targetZoom = 1;
+      this.resetView();
       this.focus(null);
     });
     s.appendChild(ctr);
@@ -98,7 +103,7 @@ class ResearchSpace {
     const key = el("details", "space-key");
     key.innerHTML = `<summary class="mono">Star key</summary>
       <ul>
-        ${this.touch ? `<li class="mono">Tap a star to preview, tap again to open</li>` : ""}
+        ${this.touch ? `<li class="mono">Tap a star to preview, tap again to open. Pinch to zoom, double-tap to reset</li>` : ""}
         <li>${glyph('<circle cx="5" cy="12" r="3" fill="var(--magenta)"/><circle cx="12" cy="12" r="3" fill="var(--cyan)"/><circle cx="19" cy="12" r="3" fill="var(--lime)"/>')}Color = main domain</li>
         <li>${glyph('<circle cx="6" cy="12" r="2.6" fill="var(--indigo)"/><circle cx="17" cy="12" r="5.5" fill="var(--indigo)"/>')}Bigger = first author or award</li>
         <li>${glyph('<circle cx="12" cy="12" r="5" fill="var(--cyan)"/><circle cx="12" cy="12" r="8.5" fill="none" stroke="var(--orchid)" stroke-width="1.6"/>')}Ring = second domain</li>
@@ -110,7 +115,7 @@ class ResearchSpace {
 
     const hint = el("div", "space-hint mono");
     hint.innerHTML = this.touch
-      ? "<span>Swipe to rotate</span><span>Tap a star</span><span>Tap again to open</span>"
+      ? "<span>Swipe to rotate</span><span>Pinch to zoom</span><span>Tap a star</span>"
       : "<span>Drag to rotate</span><span>Hover a star</span><span>Click to open</span>";
     s.appendChild(hint);
 
@@ -160,9 +165,10 @@ class ResearchSpace {
   /* ---------- Events ---------- */
   bind() {
     const c = this.canvas;
-    let down = null, moved = 0, last = null;
+    let down = null, moved = 0, last = null, lastTap = 0;
 
     c.addEventListener("pointerdown", (e) => {
+      if (this.pinch) return;
       const r = c.getBoundingClientRect();
       this.mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
       down = { x: e.clientX, y: e.clientY };
@@ -174,6 +180,7 @@ class ResearchSpace {
     c.addEventListener("pointermove", (e) => {
       const r = c.getBoundingClientRect();
       this.mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+      if (this.pinch) return;
       if (down) {
         const dx = e.clientX - last.x, dy = e.clientY - last.y;
         moved += Math.abs(dx) + Math.abs(dy);
@@ -189,6 +196,15 @@ class ResearchSpace {
     });
     const up = (e) => {
       c.classList.remove("dragging");
+      if (down && moved < 6 && e.pointerType !== "mouse") {
+        // double tap on empty sky resets zoom and pan
+        const now = performance.now();
+        const r = c.getBoundingClientRect();
+        this.mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+        this.pick();
+        if (!this.hover && now - lastTap < 320) { lastTap = 0; this.resetView(); down = null; return; }
+        lastTap = this.hover ? 0 : now;
+      }
       if (down && moved < 6) {
         const r = c.getBoundingClientRect();
         this.mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
@@ -215,11 +231,76 @@ class ResearchSpace {
     c.addEventListener("wheel", (e) => {
       if (!this.opts.zoomable && !e.ctrlKey && !e.metaKey) return;
       e.preventDefault();
-      this.targetZoom = clamp(this.targetZoom * (e.deltaY > 0 ? 0.92 : 1.08), 0.6, 2.2);
+      const r = c.getBoundingClientRect();
+      this.zoomBy(e.deltaY > 0 ? 0.92 : 1.08, e.clientX - r.left, e.clientY - r.top);
     }, { passive: false });
+
+    // Pinch: two fingers zoom around their midpoint and pan as they move.
+    // One finger still scrolls the page vertically (touch-action: pan-y), so
+    // the second finger is claimed with preventDefault before the browser can
+    // treat the gesture as a scroll or a page zoom.
+    const two = (e) => {
+      const r = c.getBoundingClientRect();
+      const [a, b] = e.touches;
+      return {
+        x: (a.clientX + b.clientX) / 2 - r.left,
+        y: (a.clientY + b.clientY) / 2 - r.top,
+        d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1,
+      };
+    };
+    c.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 2) return;
+      e.preventDefault();
+      const g = two(e);
+      // world point under the fingers, before any zoom
+      this.pinch = { d: g.d, z: this.zoom, vx: (g.x - this.w / 2 - this.pan.x) / this.zoom, vy: (g.y - this.h / 2 - this.pan.y) / this.zoom };
+      down = null;
+      this.vyaw = this.vpitch = 0;
+      this.hideTip();
+      c.classList.remove("dragging");
+    }, { passive: false });
+    c.addEventListener("touchmove", (e) => {
+      if (!this.pinch || e.touches.length < 2) return;
+      e.preventDefault();
+      const g = two(e);
+      const z = clamp(this.pinch.z * (g.d / this.pinch.d), 0.6, this.maxZoom);
+      this.zoom = this.targetZoom = z;
+      this.setPan(g.x - this.w / 2 - this.pinch.vx * z, g.y - this.h / 2 - this.pinch.vy * z, true);
+    }, { passive: false });
+    const endPinch = (e) => {
+      if (!this.pinch || e.touches.length >= 2) return;
+      this.pinch = null;
+      down = null; // the finger left behind should not start a rotate
+      if (this.zoom < 1.02) this.resetView();
+    };
+    c.addEventListener("touchend", endPinch);
+    c.addEventListener("touchcancel", endPinch);
+    // Safari zooms the whole page on its own gesture events; keep it on the canvas
+    c.addEventListener("gesturestart", (e) => e.preventDefault());
 
     new ResizeObserver(() => this.resize()).observe(this.shell);
     new IntersectionObserver(([en]) => (en.isIntersecting ? this.start() : this.stop()), { threshold: 0.05 }).observe(this.shell);
+  }
+
+  /* ---------- Zoom & pan ---------- */
+  // Zoom by factor f, keeping screen point (ax, ay) fixed; default is center.
+  zoomBy(f, ax = this.w / 2, ay = this.h / 2) {
+    const z0 = this.targetZoom, z = clamp(z0 * f, 0.6, this.maxZoom);
+    const vx = (ax - this.w / 2 - this.targetPan.x) / z0, vy = (ay - this.h / 2 - this.targetPan.y) / z0;
+    this.targetZoom = z;
+    if (z <= 1) this.setPan(0, 0);
+    else this.setPan(ax - this.w / 2 - vx * z, ay - this.h / 2 - vy * z);
+  }
+  // Keep the constellation from being dragged entirely off screen.
+  setPan(x, y, now = false) {
+    const z = Math.max(this.targetZoom, 1);
+    const mx = this.w * 0.5 * z, my = this.h * 0.5 * z;
+    this.targetPan = { x: clamp(x, -mx, mx), y: clamp(y, -my, my) };
+    if (now) this.pan = { ...this.targetPan };
+  }
+  resetView() {
+    this.targetZoom = 1;
+    this.targetPan = { x: 0, y: 0 };
   }
 
   resize() {
@@ -291,7 +372,7 @@ class ResearchSpace {
     let y1 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
     const D = 3.1;
     const f = (D / (D + z2)) * this.zoom;
-    return { sx: this.w / 2 + x1 * this.scale * f, sy: this.h / 2 + y1 * this.scale * f, z: z2, f };
+    return { sx: this.w / 2 + this.pan.x + x1 * this.scale * f, sy: this.h / 2 + this.pan.y + y1 * this.scale * f, z: z2, f };
   }
 
   /* ---------- Hit testing ---------- */
@@ -375,6 +456,8 @@ class ResearchSpace {
       }
     }
     this.zoom += (this.targetZoom - this.zoom) * 0.12;
+    this.pan.x += (this.targetPan.x - this.pan.x) * 0.12;
+    this.pan.y += (this.targetPan.y - this.pan.y) * 0.12;
 
     ctx.clearRect(0, 0, this.w, this.h);
 
