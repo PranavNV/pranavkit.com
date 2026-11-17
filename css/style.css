@@ -196,16 +196,18 @@ img { max-width: 100%; display: block; }
   display: grid;
   align-items: center;
   padding: 120px 0 110px;
-  overflow: hidden;
+  overflow-x: clip; /* clip sideways only, so the glow can fade below */
 }
+/* The glow runs past the bottom of the header and fades out over the next
+   section, so there is never an edge where one ends and the other begins. */
 .hero-bg {
   position: absolute;
-  inset: 0;
+  inset: 0 0 -320px;
   z-index: -1;
   overflow: hidden;
-  /* the header clips the blurred blobs; fade them out instead of cutting them off */
-  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent);
-  mask-image: linear-gradient(to bottom, #000 45%, transparent);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
+  mask-image: linear-gradient(to bottom, #000 30%, transparent);
 }
 .blob {
   position: absolute;
@@ -364,7 +366,7 @@ section { position: relative; z-index: 1; }
 .sec-head.center { flex-direction: column; align-items: center; text-align: center; }
 .sec-head.center p { max-width: 62ch; }
 
-.page-hero { padding: 170px 0 60px; position: relative; overflow: hidden; }
+.page-hero { padding: 170px 0 60px; position: relative; }
 .page-hero .page-title { font-size: clamp(2.8rem, 7vw, 5.6rem); line-height: 1.04; }
 .page-hero p { color: var(--muted); max-width: 58ch; font-size: 1.15rem; }
 
@@ -379,7 +381,15 @@ section { position: relative; z-index: 1; }
     var(--ink-2);
   overflow: hidden;
 }
-.space-shell.full { border-radius: 0; border-inline: 0; height: min(86vh, 900px); }
+.space-shell.full {
+  border-radius: 0;
+  border: 0;
+  height: min(86vh, 900px);
+  /* no top edge: the panel fades in from the page behind the header glow */
+  background:
+    radial-gradient(ellipse at 50% 55%, color-mix(in srgb, var(--indigo) 11%, transparent), transparent 60%),
+    linear-gradient(to bottom, transparent, var(--ink-2) 200px, var(--ink-2) calc(100% - 120px), transparent);
+}
 .space-canvas { display: block; width: 100%; height: 640px; cursor: grab; touch-action: pan-y; }
 .space-shell.full .space-canvas { height: 100%; }
 .space-canvas.dragging { cursor: grabbing; }
