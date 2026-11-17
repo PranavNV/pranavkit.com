@@ -1,0 +1,227 @@
+%-------------------------------------------------------------------------------
+% Pranav N Venkit — CV (Awesome-CV). Build with tools/cv/build.sh.
+% publications.tex, press.tex and awards.tex are generated from js/data.js by gen.js.
+%-------------------------------------------------------------------------------
+\documentclass[11pt, letterpaper]{awesome-cv}
+
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+\fontdir[fonts/]
+\definecolor{psublue}{RGB}{12,44,119}
+\colorlet{awesome}{psublue}
+\setbool{acvSectionColorHighlight}{false}
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+\name{Pranav N Venkit}{}
+\position{Senior Research Scientist{\enskip\cdotp\enskip}Salesforce AI Research}
+\address{Palo Alto, CA}
+\email{pranav.narayan25@gmail.com}
+\homepage{pranavkit.com}
+\linkedin{pranav-venkit}
+\twitter{@PranavVenkit}
+\googlescholar{oxgNwDsAAAAJ}{Google Scholar}
+
+\begin{document}
+\makecvheader[C]
+\makecvfooter{}{\textperiodcentered{}~~Pranav N Venkit~~\textperiodcentered{}}{\thepage}
+
+%-------------------------------------------------------------------------------
+\cvsection{Research Summary}
+
+\begin{cvparagraph}
+Senior Research Scientist on the Interactive AI team at Salesforce AI Research, working on trustworthy agentic AI through a trust and safety lens. I build safety and privacy evaluations for agents that act on real data, close the loop with model post-training, study persona-based decision making and agent-to-agent communication, and audit deep research systems for unsupported claims. 40+ papers across ACL, EMNLP, ICLR, AAAI, COLM, FAccT, AIES and CSCW, including an EMNLP Outstanding Paper Award.
+\end{cvparagraph}
+
+%-------------------------------------------------------------------------------
+\cvsection{Education}
+
+\begin{cventries}
+  \cventry
+    {Ph.D. in Informatics \textbar{} Advised by Dr. Shomir Wilson}
+    {Pennsylvania State University}
+    {CGPA: 3.95/4}
+    {2020 - 2025}
+    {
+      \begin{cvitems}
+        \item {Dissertation: \textit{Society and Bias: Uncovering Automated Prejudices in Sociotechnical Natural Language Processing Systems}. Best AI Dissertation, Honorable Mention.}
+        \item {Research Interest: Natural Language Processing, Ethics in ML \& AI, Social Informatics}
+      \end{cvitems}
+    }%
+  \cventry
+    {B.Tech in Computer Science and Engineering}
+    {Amrita School of Engineering}
+    {CGPA: 8.0/10}
+    {2013 - 2017}
+    {
+      \begin{cvitems}
+        \item {Research Interest: Supervised Machine Learning, Full Stack Development, Text Analysis}
+      \end{cvitems}
+    }%
+\end{cventries}
+
+%-------------------------------------------------------------------------------
+\cvsection{Experience}
+
+\begin{cventries}
+  \cventry
+    {Senior Research Scientist \textbar{} Interactive AI}
+    {Salesforce AI Research}
+    {Palo Alto, CA}
+    {Oct 2026 - Present}
+    {
+      \begin{cvitems}
+        \item {\textbf{Trust \& safety for agents:} safety and privacy evaluation of agentic systems, finding where agents leak data, take unsafe actions, or fail policy, and building judges that catch these failures in agent-to-agent traffic.}
+        \item {\textbf{Model post-training:} turning those evaluations into training data, and post-training models (SFT, RL with GRPO/DPO) for safer behavior and for diverse, grounded scientific ideation.}
+        \item {\textbf{Persona-based decision making:} socially-grounded personas for user simulation, and how long-horizon persona drift in AI companions changes the decisions agents make.}
+        \item {\textbf{Agent-to-agent communication:} how persuasion and beliefs spread through LLM agent networks, and multimodal persuasion between agents.}
+      \end{cvitems}
+    }%
+  \cventry
+    {Research Scientist \textbar{} Interactive AI}
+    {Salesforce AI Research}
+    {Palo Alto, CA}
+    {May 2025 - Sep 2026}
+    {
+      \begin{cvitems}
+        \item {\textbf{Deep research:} evidence-aware termination for enterprise deep research (ACL 2026), citation auditing of deep research agents (DeepTRACE, ICLR 2026), and claim-level redesign of report writing for faithfulness.}
+        \item {\textbf{AI simulation:} interview-grounded personality simulation (InterviewSim, COLM 2026) and persona frameworks for user simulation.}
+        \item {\textbf{Agent evaluation:} persuasion in agent networks (EMNLP 2026) and MLLM-as-a-judge reliability under cultural ambiguity (EMNLP 2026).}
+      \end{cvitems}
+    }%
+  \cventry
+    {AI Research Intern \textbar{} Mentored by Jason Wu and Philippe Laban}
+    {Salesforce AI Research}
+    {Palo Alto, CA}
+    {May 2024 - Aug 2024}
+    {
+      \begin{cvitems}
+        \item {Collaborated with the Interactive AI team to develop Ethical AI and Trustworthy NLP solutions.}
+        \item {Conducted a community-based study of how misaligned sociotechnical systems affect diverse users, and applied quantitative methods to measure biases in RAG systems.}
+        \item {Created the Answer Engine Evaluation benchmark to audit RAG systems and answer engines (Perplexity, Bing Copilot) as sociotechnical systems (FAccT 2025).}
+      \end{cvitems}
+    }%
+  \cventry
+    {Research Assistant \textbar{} Human Language Technologies Lab}
+    {Pennsylvania State University}
+    {University Park, PA}
+    {July 2021 - May 2025}
+    {
+      \begin{cvitems}
+        \item {Studied sociodemographic bias in NLP models, including disability, nationality, and cultural harms in generative AI.}
+        \item {Investigated the extent to which LLMs extract and potentially misuse Personally Identifiable Information from social media data, comparing LLMs against human annotators.}
+        \item {Primed to (re)act project with UChicago: analyzed broadcast police communications to predict dispatcher behavior, with a focus on adverse outcomes affecting minority groups across city zones.}
+      \end{cvitems}
+    }%
+  \cventry
+    {Graduate Assistant \textbar{} Project iOn}
+    {Pennsylvania State University}
+    {University Park, PA}
+    {Aug 2019 - July 2021}
+    {
+      \begin{cvitems}
+        \item {Collaborated with Dr. Patrick Dudas on collaborative learning using dynamic visualizations in an online platform.}
+        \item {Conducted exploratory interviews, survey analysis, and co-design studies to assess the efficacy of static and dynamic coding platforms.}
+      \end{cvitems}
+    }%
+  \cventry
+    {Application Engineer}
+    {Honeywell Technology Solutions}
+    {Bangalore, India}
+    {Aug 2017 - July 2019}
+    {
+      \begin{cvitems}
+        \item {Implemented automation concepts, including chat and process bots, and led the integration of machine learning solutions in engineering operations across multiple stakeholder projects.}
+        \item {Led the development of an Enterprise Service Bus using API communications, saving an average of 60 hours of redundant development per week.}
+      \end{cvitems}
+    }%
+\end{cventries}
+
+%-------------------------------------------------------------------------------
+\cvsection{Selected Projects}
+
+\begin{cventries}
+  \cventry
+    {Keywords: Agent Safety, Privacy, Post-Training}
+    {Safety and Privacy Evaluation and Post-Training for AI Agents}
+    {Salesforce AI Research}
+    {2026 - Present}
+    {
+      \begin{cvitems}
+        \item {Building evaluations that surface when agents overstep, leak sensitive information, or break policy, including in the messages agents send each other, and turning those failures into post-training data that teaches models to behave better.}
+      \end{cvitems}
+    }%
+  \cventry
+    {Keywords: LLM Personas, User Simulation, Persona Drift}
+    {Persona-Based Decision Making}
+    {Salesforce AI Research}
+    {2025 - Present}
+    {
+      \begin{cvitems}
+        \item {Asking who LLM personas actually represent (AAAI 2026), grounding them in social science (InterviewSim, COLM 2026), and measuring how they drift out of character over long conversations.}
+      \end{cvitems}
+    }%
+  \cventry
+    {Keywords: Multi-Agent Systems, Persuasion, Vision-Language Models}
+    {Agent-to-Agent Communication}
+    {Salesforce AI Research}
+    {2025 - Present}
+    {
+      \begin{cvitems}
+        \item {Studying how persuasion and beliefs cascade through LLM agent networks and how images sway vision-language agents (MMPersuade and Seeing is Believing, EMNLP 2026).}
+      \end{cvitems}
+    }%
+  \cventry
+    {Keywords: Deep Research, Answer Engines, Citation Auditing}
+    {Trustworthy Deep Research}
+    {Salesforce AI Research}
+    {2024 - Present}
+    {
+      \begin{cvitems}
+        \item {Auditing answer engines and deep research agents for unsupported claims (FAccT 2025; DeepTRACE, ICLR 2026) and building enterprise research agents that know when to stop (ACL 2026).}
+      \end{cvitems}
+    }%
+\end{cventries}
+
+%-------------------------------------------------------------------------------
+\cvsection{Skills}
+
+\begin{cvskills}
+  \cvskill{Programming}{Python, C, C++, Java, R, SQL}
+  \cvskill{ML \& LLMs}{PyTorch, Hugging Face Transformers, SFT, RL post-training (GRPO, DPO), LLM-as-a-judge evaluation}
+  \cvskill{Research Methods}{Benchmark design, mixed methods, interviews, surveys, co-design, ethnographic analysis}
+  \cvskill{Web \& Visualization}{D3.js, P5.js, Processing, HTML, CSS, JavaScript}
+\end{cvskills}
+
+%-------------------------------------------------------------------------------
+\input{publications.tex}
+
+%-------------------------------------------------------------------------------
+\cvsection{Recent Talks \& Lectures}
+
+\begin{cvhonors}
+  \cvhonor{Tutorial: Agents in the Wild: Where Research Meets Deployment}{KDD 2026, with G.H. Yang, H. Sedghamiz, E. Santus, V. Dibia, I. Baldini}{Jeju, Korea}{Aug 2026}
+  \cvhonor{Poster: Don't Stop Early: Scalable Enterprise Deep Research}{ACL 2026, Industry Track}{}{Jul 2026}
+  \cvhonor{Invited Lecture: Evaluating AI Agents in the Era of Benchmarks}{Machine Learning Summer School (MLSS) 2026, Columbia University}{New York, USA}{Jun 2026}
+\end{cvhonors}
+
+%-------------------------------------------------------------------------------
+\input{awards.tex}
+
+%-------------------------------------------------------------------------------
+\cvsection{Social and Academic Service}
+
+\begin{cvhonors}
+  \cvhonor{Area Chair}{ACL Rolling Review (ARR) 2026}{}{2026}
+  \cvhonor{Program Committee}{AAAI/ACM Conference on AI, Ethics, and Society (AIES) 2026}{}{2026}
+  \cvhonor{Area Chair}{ACL 2025, EMNLP 2025}{}{2025}
+  \cvhonor{Program Committee}{FAccT 2025, AIES 2025}{}{2025}
+  \cvhonor{Program Committee}{Conference on Fairness, Accountability, and Transparency (FAccT) 2024}{Rio, Brazil}{2024}
+  \cvhonor{Project Mentor}{NSF Careers Program: ``Bias and Fairness in ML: Mitigating Bias in Unstructured Data''}{}{2023 - 24}
+  \cvhonor{Program Committee}{TrustNLP Workshop at ACL 2023}{Toronto, Canada}{2023}
+  \cvhonor{Conference Organizer and Volunteer}{EMNLP 2023, FAccT 2023}{}{2023}
+  \cvhonor{Vice President}{Graduate Student Association in IST (GIST)}{Pennsylvania, USA}{2020}
+\end{cvhonors}
+
+%-------------------------------------------------------------------------------
+\input{press.tex}
+
+\end{document}
