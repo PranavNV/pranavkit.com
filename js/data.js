@@ -122,9 +122,10 @@ const NEWS = [
   { d: "Apr 2026", k: "paper", h: 'Our work <a href="https://dl.acm.org/doi/abs/10.1145/3805689.3812232">“What if AI systems weren\'t chatbots?”</a> accepted at <b>FAccT 2026</b> in Montréal.' },
   { d: "Feb 2026", k: "update", h: 'Co-authored <a href="https://arxiv.org/abs/2602.20294">InterviewSim</a>, a scalable framework for interview-grounded personality simulation.' },
   { d: "Feb 2026", k: "update", h: 'Released <a href="https://arxiv.org/abs/2601.07110">“The Need for a Socially-Grounded Persona Framework for User Simulation”</a>.' },
-  { d: "Feb 2026", k: "media", h: 'Our AAAI 2026 audit of AI-crafted synthetic personas was covered by <a href="https://techxplore.com/news/2026-02-chatbots-overemphasize-sociodemographic-stereotypes.html">Tech Xplore</a>.' },
+  { d: "Feb 2026", k: "media", h: 'Our AAAI 2026 audit of AI-crafted synthetic personas was covered by <a href="https://www.psu.edu/news/information-sciences-and-technology/story/chatbots-overemphasize-sociodemographic-stereotypes">Penn State News</a> and <a href="https://techxplore.com/news/2026-02-chatbots-overemphasize-sociodemographic-stereotypes.html">Tech Xplore</a>.' },
   { d: "Jan 2026", k: "paper", h: '<a href="https://arxiv.org/abs/2509.04499">“DeepTRACE: Auditing Deep Research AI Systems”</a> accepted at <b>ICLR 2026</b> in Rio de Janeiro.' },
   { d: "Nov 2025", k: "paper", h: '<a href="https://ojs.aaai.org/index.php/AAAI/article/view/41112">“A Tale of Two Identities: An Ethical Audit of Human and AI-Crafted Personas”</a> accepted at <b>AAAI 2026</b> in Singapore.' },
+  { d: "Nov 2025", k: "media", h: 'Our AIES 2025 study on how everyday users coax biased answers out of chatbots was covered by <a href="https://www.psu.edu/news/research/story/lay-intuition-effective-jailbreaking-ai-chatbots-technical-methods">Penn State News</a> and <a href="https://techxplore.com/news/2025-11-lay-intuition-effective-jailbreaking-ai.html">Tech Xplore</a>.' },
   { d: "Oct 2025", k: "update", h: 'Co-wrote <a href="https://www.salesforce.com/blog/trusted-deepresearch/">“Towards Trustworthy Enterprise Deep Research”</a> on the Salesforce blog.' },
   { d: "Sep 2025", k: "media", h: 'Our audit of deep research models was covered in <a href="https://www.newscientist.com/article/2496133-around-one-third-of-ai-search-tool-answers-make-unsupported-claims/">New Scientist</a> and <a href="https://techxplore.com/news/2025-09-ai-tools-unreliable-overconfident-sided.html">Tech Xplore</a>.' },
   { d: "Jun 2025", k: "media", h: "Research spotlighted in the <b>Penn State Research 2024</b> magazine and the College of IST’s <b>iConnect 2025</b>." },
@@ -165,7 +166,10 @@ const NEWS_KINDS = {
 };
 
 const PRESS = [
+  { d: "Apr 2026", o: "Salesforce Blog", t: "Salesforce AI Research at ICLR 2026", u: "https://www.salesforce.com/blog/salesforce-iclr-2026/" },
   { d: "Feb 2026", o: "Tech Xplore", t: "Chatbots overemphasize sociodemographic stereotypes, researchers report", u: "https://techxplore.com/news/2026-02-chatbots-overemphasize-sociodemographic-stereotypes.html" },
+  { d: "Feb 2026", o: "Penn State News", t: "Chatbots overemphasize sociodemographic stereotypes, researchers report", u: "https://www.psu.edu/news/information-sciences-and-technology/story/chatbots-overemphasize-sociodemographic-stereotypes" },
+  { d: "Nov 2025", o: "Penn State News", t: "Lay intuition as effective at jailbreaking AI chatbots as technical methods", u: "https://www.psu.edu/news/research/story/lay-intuition-effective-jailbreaking-ai-chatbots-technical-methods" },
   { d: "Sep 2025", o: "New Scientist", t: "Around one-third of AI search tool answers make unsupported claims", u: "https://www.newscientist.com/article/2496133-around-one-third-of-ai-search-tool-answers-make-unsupported-claims/" },
   { d: "Sep 2025", o: "Tech Xplore", t: "A new study finds AI tools are often unreliable, overconfident and one-sided", u: "https://techxplore.com/news/2025-09-ai-tools-unreliable-overconfident-sided.html" },
   { d: "May 2025", o: "Penn State News", t: "Doctoral students honored for AI dissertations", u: "https://ai.psu.edu/doctoral-students-honored-for-ai-dissertations/" },
